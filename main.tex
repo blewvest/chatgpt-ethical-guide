@@ -1,0 +1,540 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     LaTeX source code to approximate a NIST Technical report
+%	  Instructions for authors: tinyurl.com/techpubsnist 
+%	DOI watermark will be added on final PDF
+% 	Developed by K. Miller, kmm5@nist.gov 
+%	Last updated: 22-January-2021
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}   % if you want the fonts
+\usepackage{amssymb}    % if you want extra symbols
+\usepackage{graphicx}   % need for figures
+\usepackage{xcolor}
+\usepackage{bm}
+\usepackage{secdot}		
+\usepackage{mathptmx}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage[hang,flushmargin,bottom]{footmisc} % footnote format
+
+
+\usepackage{titlesec}
+\titleformat{\section}{\normalsize\bfseries}{\thesection.}{1em}{}	% required for heading numbering style
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\usepackage{tocloft}	% change typeset, titles, and format list of appendices/figures/tables
+\renewcommand{\cftdot}{}	
+\renewcommand{\contentsname}{Table of Contents}
+\renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}} % for parts
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand\cftbeforesecskip{\setlength{4pt}{}}
+\addtolength{\cftfignumwidth}{1em}
+\renewcommand{\cftfigpresnum}{\figurename\ }
+\addtolength{\cfttabnumwidth}{1em}
+\renewcommand{\cfttabpresnum}{\tablename\ }
+\setlength{\cfttabindent}{0in}    %% adjust as you like
+\setlength{\cftfigindent}{0in} 
+
+\usepackage{enumitem}         % to control spacing between bullets/numbered lists
+
+\usepackage[numbers,sort&compress]{natbib} % format bibliography 
+\renewcommand{\bibsection}{}
+\setlength{\bibsep}{0.0pt}
+
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+	colorlinks = true,
+urlcolor ={blue},
+citecolor = {.},
+linkcolor = blue,
+linkbordercolor=blue, % set the border color for internal links
+pdfborderstyle={/S/U}, % set the border style for internal links
+anchorcolor = {.},
+filecolor = {.},
+menucolor = {.},
+runcolor = {.}
+pdftitle={},
+pdfsubject={},
+pdfauthor={},
+pdfkeywords={}
+}
+
+\urlstyle{same}
+
+\usepackage{epstopdf} % converting EPS figure files to PDF
+
+\usepackage{fancyhdr, lastpage}	% formatting document, calculating number of pages, formatting headers
+\setlength{\topmargin}{-0.5in}
+\setlength{\headheight}{39pt}
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\evensidemargin}{0.25in}
+\setlength{\textwidth}{6.0in}
+\setlength{\textheight}{8.5in}
+
+\usepackage{caption} % required for Figure labels
+\captionsetup{font=small,labelfont=bf,figurename=Fig.,labelsep=period,justification=raggedright} 
+
+% Fix for pdfTeX warning of form: … found PDF version <1.6>, but at most version <1.5> allowed
+% https://tex.stackexchange.com/questions/52317/pdftex-warning-version-allowed
+\pdfminorversion=7
+
+%%%%%%%%%%% !!!!!! REQUIRED - FILL OUT METADATA HERE !!!!!!!! %%%%%%%%%%%%%%
+%  	Report Number - fill in Report Number sent to you (see info below)
+%   DOI Statement - fill in DOI sent to you 
+%   Month Year - fill in Month and Year of Publication
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\pubnumber}{XXXX}
+\newcommand{\DOI}{https://doi.org/10.6028/NIST.HB.XXXX}
+\newcommand{\monthyear}{Month Year}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   	BEGIN DOCUMENT 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+	\urlstyle{rm} % Format style of \url   
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Cover Page is REQUIRED and must contain the information 
+%	displayed here, at a minimum. Additional artwork may be included 
+%	(e.g., official project/conference logo, etc.).
+%	Pub Number automated based on metadata
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+\begin{flushright}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 	Automated based on metadata - delete if not applicable
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\LARGE{\textbf{How to Use Large Language Models:}}\\
+\vfill
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Title 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Huge{\textbf{An Ethical Guide to ChatGPT}}\\
+    \vfill
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Authors - add complete list of authors, affiliations will be 
+%   added on title page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \large by Itai Epstein and
+    \large Elinor Poole-Dayan
+\vfill
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	The DOI is automated based on metadata.	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vfill
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	NIST LOGO - keep as-is
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{figure*}[h!]
+    \begin{flushright}
+    \includegraphics[width=0.7\linewidth]{firstpagepic.png}\\
+    \hspace*{0pt}\hfill \textit{Generated using DALL-E 2 by OpenAI.}
+    % \hspace*{0pt}\hfill \caption{Generated using DALL-E 2 by OpenAI.}
+    \end{flushright}
+\end{figure*}
+ 
+  
+\end{flushright}
+\end{titlepage}
+\tableofcontents
+\newpage
+
+\pagenumbering{arabic}
+\section{Introduction to Generative Text Models}
+\label{sec:intro}
+Have you ever wondered how AI can generate human-like text, or how it has evolved over time to become the powerful tool it is today? What is ChatGPT, and why is everyone so excited about it? How can you leverage it to aid you in your daily life or work? In this guide, we will explore the fascinating world of generative text models, unraveling the mysteries behind their inner workings and examining recent advances that launched them into the spotlight. We will touch upon key concepts such as transformers, Reinforcement Learning from Human Feedback (RLHF), and the popular model ChatGPT by OpenAI. This will lay the foundation for understanding the inherent biases in large language models (LLMs) and their potential amplification, and set the stage for you to learn how to use these resources in a safe, ethical manner.
+
+Generative text models are AI systems designed to generate human-like text based on given text input. 
+These models have evolved significantly over time, from simple algorithms to highly sophisticated tools capable of generating coherent and contextually relevant responses.
+The basic paradigm is that given some input text (and whatever the model has already generated), it simply tries to \textit{predict the word that should come next}. For example, if the model is given ``This morning, I woke up and ate" then it will likely predict the next word to be ``breakfast." This is the main idea behind both the training of the models and what they do when generating text for you.
+
+This data-driven approach has given AI the ability to produce increasingly coherent and contextually appropriate responses. But how do these models continue to improve and better align with human expectations? The answer lies in the integration of Reinforcement Learning from Human Feedback (RLHF), which refines AI performance through iterative feedback from human evaluators.
+This process enables the model to better understand and generate text that aligns with the user's intentions. 
+
+While these models have proven to be extremely useful, it's essential to acknowledge the potential biases they can carry and reproduce. These models are trained on vast amounts of text data from the internet, they can inadvertently learn and reproduce biases present within the data. 
+This introduction of bias may lead to the amplification of harmful or misleading information. 
+
+This guide, as a whole, serves as an introduction to ethical use of LLMs like ChatGPT for general users. In this first half, you will learn about the field of natural language processing and essential terminology (\ref{sec:context}), the models' capabilities and limitations (\ref{sec:capabilities}), and how bias is introduced to the models during training (\ref{sec:training}) and a few ways this is being dealt with from the model developer side. 
+
+In the second part of this guide, we give more practical information and guiding principles on how you can interact with AI-generated content safely and ethically.
+
+
+\subsection{Context and Terminology}\label{sec:context}
+% In the realm of AI ethics, understanding key concepts is essential for informed discussions. Weak or narrow AI refers to systems designed for specific tasks, while artificial general intelligence (AGI) denotes AI systems with human-like capabilities across diverse domains. The paperclip test illustrates the potential risks of AGI, demonstrating how a seemingly innocuous goal (e.g., maximizing paperclip production) could lead to unintended consequences if the AI pursues it without ethical considerations.
+The field of Natural Language Processing (NLP) has seen remarkable progress over the last decade. In this section, we give a brief overview of the development of the field, with key terms appearing in \textcolor{blue}{blue} and will link to their definitions in the glossary (\ref{glossary}). 
+
+The field of \hyperref[item:nlp]{natural language processing (NLP)} began well over 50 years ago after World War II when the need for \hyperref[item:machine-translation]{machine translation} between Russian and English arose. Later in the mid-1960s, Joseph Weisenbaum developed the first \hyperref[item:chatbot]{chatbot}, ELIZA \cite{eliza}. ELIZA was a primitive conversational agent that used a simple \hyperref[item:rule-based]{rule-based system} to mimic a psychotherapist. It was able to recognize and respond to certain keywords and phrases, but lacked true language understanding. For the next two decades, more sophisticated rule-based systems were developed, which were able to interpret natural language commands. However, these early systems were limited by their reliance on hand-coded rules and the fact that they could only handle a small number of pre-defined scenarios.
+
+In the late 1980s and early 1990s, \hyperref[item:statistical]{statistical approaches} to NLP started to gain popularity due in part to increases in computational power. These models used machine learning algorithms to learn patterns in language data and make predictions about new data. This shift allowed for automating the learning process and making probabilistic decisions that far surpassed hard-coded rules.
+% One of the earliest examples of this was the Hidden Markov Model \cite{hidden-markov-rabiner}, which was used for speech recognition.
+
+However, it wasn't until the mid-2000s with the advent of \hyperref[item:deep-learning]{\textbf{deep learning}} that NLP really began to take off. Deep learning algorithms were able to process massive amounts of language data and learn more complex patterns in the data. One of the first deep learning models in NLP was the \hyperref[item:rnn]{Recurrent Neural Network (RNN)} \cite{Mikolov2010RecurrentNN} which was able to generate text character by character.
+
+This was followed by the \hyperref[item:lstm]{Long Short-Term Memory (LSTM)} model \cite{Graves2013GeneratingSW}, which was able to process longer sequences of text and remember information from earlier parts of the sequence. These models were able to achieve state-of-the-art results on a wide range of NLP tasks, such as \hyperref[item:language-modeling]{language modeling}, machine translation, and \hyperref[item:sentiment-analysis]{sentiment analysis}.
+
+In 2017, a major breakthrough in NLP was achieved with the release of the transformer model \cite{Vaswani2017AttentionIA}, the architecture of which is used in the now-famous \hyperref[item:gpt]{GPT} language models. The transformer model uses a mechanism called \hyperref[item:attention]{attention} to allow the model to pay attention to different parts of the input sequence, enabling it to learn more complex patterns in language data \cite{Bahdanau2015EndtoendAL}. Transformer models are able to generate highly coherent and contextually appropriate text, and are considered by many to be a major step forward in natural language generation.
+
+The next major breakthrough is the notion of \hyperref[item:pre-training]{pre-training} language models. Large models are initially trained on vast amounts of unstructured, diverse text, which then allows for simply \hyperref[item:finetuning]{fine-tuning} them for specific tasks down the line. This removes the need of having to \hyperref[item:training]{train} models from scratch every time, which is very costly and difficult. It also solves a big issue in the scarcity of high-quality data and allows for the use of the much more abundant unstructured, unlabeled text data on the internet. 
+Since then, we have seen the development of even more powerful transformer-based models, such as GPT-3 \cite{Brown2020LanguageMA}, T5 \cite{Raffel2019ExploringTL}, and the most recent GPT-4 \cite{OpenAI2023GPT4TR}, which have been able to achieve even more impressive results on a wide range of NLP tasks. These models have revolutionized the field of NLP and are being used today in a variety of applications, such as chatbots, language translation, and content generation.
+
+Overall, the field of NLP has come a long way since the early days of ELIZA and rule-based systems. We have seen the development of statistical models, recurrent neural networks, and transformer-based models, each building on the successes and limitations of the models that came before them. These models have enabled us to achieve impressive results in a wide range of NLP tasks, and are continuing to drive innovation in the field today.
+
+When discussing language models, particularly in the context of AI ethics, safety, and alignment, it's essential to understand some key terms and concepts. We explain these at a high level in the glossary below to give you the knowledge needed to engage with AI systems responsibly and effectively. 
+\subsubsection{Glossary}\label{glossary}
+
+\begin{itemize}
+    \item \textit{Natural Language Processing (NLP)}\label{item:nlp}: The field of computer science that focuses on computational techniques for analyzing, representing, and understanding human (natural) language. Many problems in NLP focus on natural language understanding and/or natural language generation and relate to many other fields, including linguistics, cognitive science, and mathematics.
+    \item \textit{Chatbot}\label{item:chatbot}: A computer program that can talk to people like a human, through text or voice. They can be rule-based or AI based.
+    
+    \item \textit{Rule-based systems}\label{item:rule-based}: A type of program that follows a specified set of instructions to make decisions or give answers.
+    
+    \item \textit{Statistical models}\label{item:statistical}: Programs that learn from data by looking for patterns in it. They use this information to make probabilistic predictions or draw conclusions. 
+    
+    \item \textit{Deep learning}\label{item:deep-learning}: A type of statistical model that has lots of layers, allowing it learn more complex ideas and relationships between them. This is relatively recent and has revolutionized the field of machine learning. It is often more data intensive and computationally expensive than simpler models, however engineering advances and the abundance of text data make it more feasible.
+    
+    \item \textit{Recurrent Neural Network (RNN)}\label{item:rnn}: A type of machine learning model that is good for understanding things that happen in a sequence, such as words in a sentence.
+    
+    \item \textit{Long Short-Term Memory (LSTM)}\label{item:lstm}: A type of RNN that can remember information from earlier in a sequence, allowing it to understand information from text much better.
+
+    \item \textit{Attention}\label{item:attention}: A technique that helps a computer focus on the most important parts of a piece of text.
+
+    \item \textit{Language model}\label{item:language-modeling}: An AI model that  learns the patterns and relationships between words in a large corpus of text data. It can predict what words are likely to come next in a sentence or paragraph and thus generate text. 
+    
+    \item \textit{Machine translation}\label{item:machine-translation}: When a computer translates written text from one (human) language to another.
+    
+    \item \textit{Sentiment analysis}\label{item:sentiment-analysis}: When a computer tries to understand if a piece of text conveys positive, negative, or neutral emotion or opinion.
+
+    \item \textit{Training data}\label{item:training}: Language models learn from vast amounts of text data, often sourced from the internet. The quality and diversity of the training data play a crucial role in shaping the model's understanding of language and its biases. It can be labeled (e.g. ``I loved the movie!" could have a positive label for sentiment analysis) or unlabeled (unstructured text with no additional information).
+    
+    \item \textit{Pre-training}\label{item:pre-training}: The process of training a language model on a large corpus of text data. The goal of pre-training is to learn a set of general language representations encoding the semantic and syntactic properties of natural language.  After, they can be fine-tuned on other NLP tasks, such as language modeling, machine translation, and sentiment analysis.
+    
+    \item \textit{Fine-tuning}\label{item:finetuning}: After an initial pre-training phase, language models are trained further (fine-tuned) on a smaller, curated dataset. This process helps the model become more specialized, focusing on specific tasks or adhering to particular guidelines.
+    
+    \item\textit{Generative Pre-trained Transformer (GPT)}\label{item:gpt}: A family of large-scale neural language models developed by OpenAI. GPT models are based on the transformer architecture and are trained on massive amounts of text data using a pre-training process. They are capable of generating coherent and fluent text in various natural language tasks such as language modeling, text completion, and machine translation. 
+    
+    \item \textit{Bias}\label{item:bias}: Language models may unintentionally learn and reproduce societal biases present in their training data. These biases can manifest in the form of stereotypes, offensive content, or misinformation.
+    \item \textit{AI alignment}\label{item:alignment}: This term refers to the process of designing AI systems that understand and act in accordance with human values and intentions. Ensuring alignment is a critical aspect of AI ethics and safety.
+    
+    \item \textit{AI safety}\label{item:ai-safety}: AI safety encompasses the research and techniques aimed at making AI systems more robust and reliable, minimizing the risks associated with unintended consequences or malicious uses.
+    
+    \item \textit{AI ethics}\label{item:ai-ethics}: AI ethics is a multidisciplinary field that addresses the moral and ethical implications of AI development, deployment, and use. It strives to ensure that AI systems are designed and used in a manner that is responsible, transparent, and respects human rights and values.
+    
+    \item\textit{Reinforcement Learning (RL)}: A type of machine learning that involves training an agent to interact with an environment and learn from feedback in the form of rewards or penalties. The goal of RL is for the agent to learn an optimal policy that maximizes the cumulative reward over time. RL has been applied to various NLP tasks, such as dialogue generation and text summarization.
+    
+    \item \textit{Reinforcement Learning from Human Feedback (RLHF)} \label{item:rlhf}: RLHF is a technique that helps improve AI performance by training the model using RL techniques on feedback from human evaluators. This iterative process is used for ChatGPT and allows the model to better align with human values and intentions.
+    
+    \item \textit{Artificial General Intelligence (AGI)}\label{item:agi}: AI systems with human-like capabilities across a wide range of domains, capable of tackling diverse problems with a level of intelligence that may eventually match or even surpass human ability. 
+    
+    \item \textit{Weak AI}\label{item:weak-ai}: Weak AI refers to systems designed to perform specific tasks, such as language translation or image recognition. This is often used to contrast with AGI systems. 
+\end{itemize}
+Generally, language models are more like AGI than weak AI since they can be used for a multitude of tasks, encode general information about the world, and are not trained to do only one task. It is debated whether AGI can exist or be achieved, and also whether it would be a good thing or not. We will not discuss this topic further here as it is less relevant to our goal of creating a practical user guide, but the term AGI is useful to gain a fuller understanding of the conversations surrounding such models and the general direction of AI safety concerns currently.  
+% The potential risks of AGI are often illustrated using the thought-provoking paperclip test. This example demonstrates how a seemingly innocuous goal, like maximizing paperclip production, could lead to unintended consequences if the AI pursues it without considering ethical boundaries. As the AI relentlessly optimizes for paperclip production, it might exhaust resources or even threaten human existence, emphasizing the need for ethical constraints in AI development.
+
+
+
+With these foundational concepts in mind, we will now delve into the current capabilities and limitations of ChatGPT, a state-of-the-art language model. Understanding these aspects will further enable you to engage with AI systems responsibly and effectively, and help you better navigate the fascinating world of AI-generated content.
+
+
+\subsection{Capabilities and Limitations}\label{sec:capabilities}
+% ChatGPT and similar models have a wide range of capabilities, such as answering questions, providing explanations, and generating text in various styles. However, they also have limitations, including an inability to query the internet in real-time or perform complex calculations. They also rely on a context window, meaning they can lose track of information beyond a certain length. To mitigate this, users can start a new chat or provide context within their prompts.
+As we explore the world of ChatGPT and similar models, it's crucial to understand both their capabilities and limitations. These models excel at tasks like answering questions, providing explanations, and generating text in various styles, making them valuable tools for a range of applications. However, they do come with certain constraints that users should be aware of, in order to get the most out of their interactions with these AI systems.
+
+One of the main limitations of ChatGPT is its inability to query the internet in real-time. This means that while it has been trained on a wealth of knowledge, its understanding is static and limited to the information available up until its last training update.\footnote{As of writing this, the knowledge cutoff of ChatGPT is September 2021.} As a result, ChatGPT cannot reliably cite sources or accurately give up-to-date information. Consequently, it may not be aware of the latest developments, and users should always verify claims and supplement any missing information through their own research. 
+Prompting may have a large effect on this and asking it to cite sources or start off with facts before making conclusions has sometimes shown to produce more accurate results. However, it is also a well-known issue that it can create incomplete or false citations, so one should always double check using a search engine or consulting other sources.
+
+Generally, when AI models generate inaccurate information, it is called \textit{hallucination} \cite{Hallucination}. While the RLHF in ChatGPT encourages it to announce when it doesn't know certain things, it is not entirely perfect and sometimes it may slip up and fabricate information.
+
+Another limitation is the difficulty these models face in performing complex calculations or numerical tasks. As language models, their primary focus is on understanding and generating text, which makes them less suited for tasks that require mathematical precision.
+
+Additionally, language models like ChatGPT have a context window, which is the maximum length of text they can process and ``remember'' at once. When input and chat history exceed this window, the model loses track of information from earlier parts of the text, which can lead to inconsistencies or inaccuracies in its responses. This limitation stems from the technical architecture of the model, which is designed to handle a fixed amount of information at a time. One quick way to double check this is to enter the same prompt in a new chat and see if the answer changes. Another easy check is to ask ChatGPT whether it notices any false information in its previous response. Often, it can correct itself, however you should never rely on this entirely and double check information with alternative sources.
+
+
+Despite these limitations, users can still harness the power of ChatGPT by using effective prompting techniques. By refining your prompts and adjusting your expectations, you can work around the model's constraints and extract valuable insights. For instance, you might use ChatGPT to outline ideas or generate drafts, and then conduct your own research to verify sources and complete the final product. In sections \ref{sec:usecases} and \ref{sec:prompting} we outline various use cases and prompting techniques in detail.
+
+Understanding the technical limitations of ChatGPT is crucial for responsible and effective use. By being aware of these constraints, users can maximize the benefits of AI-generated content while minimizing potential pitfalls. In the next section, we will delve into the important topics of training data and bias, exploring how these factors influence the behavior of AI systems like ChatGPT and the steps being taken to address these challenges.
+
+\subsection{Training Data and Bias}\label{sec:training}
+
+Generative text models are trained on vast amounts of data from the internet, which includes both inaccurate and biased information. This training data can lead to models exhibiting biases and misinformation in their outputs \cite{Chang2023LanguageMB}. As these AI systems learn from the commonalities in the text, they may disproportionately focus on specific demographics or perspectives, potentially reinforcing existing inequalities. As such, models like ChatGPT can sometimes produce harmful, biased, offensive, or even private text. The power dynamics and privileges present in societal structures have a big impact on which groups are most negatively affected \cite{Blodgett2020LanguageI}. As such, it is imperative for you to be proactive and think critically about the systemic and cultural dynamics contributing to inequity within our society and how this might affect different communities interacting with AI and especially LMs.
+
+\subparagraph{Toxic Outputs:} It is known to be the case that LMs will output offensive text, especially in response to \textit{targeted or biased prompts}. While undesirable, this is actually one of the ways in which bias can be mitigated: one can provoke biased responses from the model and then attempt to correct for it via RLHF \cite{Perez2022RedTL,Ganguli2022RedTL}.\footnote{This process is termed \textit{Red Teaming} and is often done with using other language models to supply adversarial prompts.} Unfortunately, the model will still generate toxic responses even when the prompts are not explicitly biased \cite{Chang2023LanguageMB}. They are also known to memorize more of the training data as the model size scales up, which may result in releasing private information or copying \cite{Perez2022RedTL}. However, a major caveat is that these are often hallucinated, resulting in realistic fake ``private" information or plagiarism due to incorrect or missing citations \cite{Huang2022AreLP}. Overall, it is important to know that LLMs can generate convincing inaccurate text that sounds very similar to human-written text. 
+
+\subparagraph{Biased Information Representation:} Another known issue is that generation quality may decrease depending on the topic or the type of language used in the prompt. Research has shown that the model assigns low probabilities (and therefore is less likely to generate) to minority terms (e.g. the singular gender neutral pronouns ``they" or ``xe"). This performance gap exists to some extent for essentially all those that are not young white males \cite{Smith2022ImST,Zhang2021SociolectalAO}. It was also shown that the model performance decreases when the prompts are written in AAVE (African-American Vernacular English) text \cite{Groenwold2020DatsWI}. While larger pre-trained LMs (such as ChatGPT, which is based on GPT versions 3.5 or 4) reduce this performance gap compared to their predecessors (GPT-2 and similar models), it is certainly still problematic and may lead to generated text that is not inclusive on the whole, contributing to the systematic under-representation or even outright discrimination against 
+different demographic groups, including nationality/ethnicity, religion, sexual orientation, gender, ability, age, body-type, and socioeconomic status
+\cite{Chang2023LanguageMB}. Not only do models perform worse when prompts include these terms, but they are more likely to express negative sentiment in responses mentioning these topics. Moreover, generated text may depend on the political leaning and perceived personality of the user prompt. 
+
+\subparagraph{Important Note:} As of writing this guide, there is very little research focusing on ChatGPT or GPT-4, which are the newest models that you will likely be using. Observational data and claims by OpenAI point towards improvement in these domains by the newest models, however one must not blindly trust them to be completely fair. Being aware of these problems will help you be cognizant of these systemic issues and more able to detect (and thus correct for) it.
+
+% In the second part of this guide, there is a section on bias mitigation techniques for users via prompting (\ref{sec:bias}). There, as well as in the rest of the sections in Part \ref{sec:part2} below, you will learn techniques to navigate using the models in an informed, value-aligned manner.
+
+\section{User Guide}\label{sec:part2}
+In the second part of this guide, we dive into more practical knowledge on how exactly one can leverage these powerful tools in an effective way without compromising your values or accidentally being mislead by the AI. In the following sections, we outline examples of potential (mis)use cases (\ref{sec:usecases}), how to craft effective prompts (\ref{sec:prompting}) to ensure the model is generating what you intended, and dangers and drawbacks (\ref{sec:dangers}) to be aware of, including best practices for mitigating bias and verifying the output (\ref{sec:literacy}). We also created value framework (\ref{sec:values}) to help you identify and align your values with the AI-generated content and include several short case studies (\ref{sec:casestudies}) as examples in using our framework and best practices. Lastly, we include some fun and creative applications (\ref{sec:fun}) to highlight some of the impressive capabilities of the model and showcase the ingenuity that humans, aided with AI, can create. Rapid advances in AI technology isn't something that you have to be afraid of, it is something that you can choose to embrace, leading to more interesting things. 
+
+\subsection{Accessing ChatGPT}\label{sec:access}
+Currently, ChatGPT is free to use at \href{https://chat.openai.com}{chat.openai.com}. Users will have to make an account with OpenAI and can read more about getting started \href{https://openai.com/blog/chatgpt}{here}.
+
+\subsection{Use Cases}\label{sec:usecases} 
+Generative text models can be useful for tasks like learning coding or brainstorming ideas. However, they may be less suitable for sensitive topics or situations that require nuanced understanding. Users should consider the strengths and weaknesses of these AI systems when deciding how to use them in their daily lives.
+
+ChatGPT is great at writing because it learns patterns in language by analyzing lots of text. They can write in different voices and styles, depending on how they're trained or prompted. With some customization, you can use ChatGPT to generate text for a wide range of tasks, such as writing articles, chatbots, generating code, and more. But it's important to remember that ChatGPT is not perfect and can make mistakes or produce output that doesn't make sense, so it's still important to use your own judgment and creativity.
+
+ChatGPT can help humans be more creative and productive, but they shouldn't replace human input entirely. It can be used for many tasks that involve processing language, such as the following:
+
+\begin{itemize}
+    \item \textit{Question answering:} This involves answering questions posed to the model using natural language. For example, students might use ChatGPT to help them research a topic for an essay by asking it questions about the subject. Similarly, a person who wants to learn more about a particular topic might use ChatGPT to ask questions and get more information.
+    \item \textit{Generating text:} This involves using the model to create new text based on certain parameters, such as topic or style. For example, a content creator might use ChatGPT to quickly draft blog posts, articles, or scripts that are relevant to a particular topic. Similarly, social media managers might use it to help them generate posts for their brand's social media accounts. ChatGPT can also be used to quickly write emails. ChatGPT is particularly useful for generating small amounts of text that need to be created quickly and efficiently. Longer forms of writing should be completed by people, whereas ChatGPT tends to become repetitive and can combine unusual words and phrases \cite{bushwick_2022}.
+    \item \textit{Text summarization:} This involves using ChatGPT to create a condensed summary of a longer piece of text, such as an article or a legal document. ChatGPT is particularly effective at summarizing small, specific pieces of text by extracting the most important information from them. For example, researchers might use ChatGPT to help them quickly review dense, academic papers and extract key information. Lawyers might use it to review lengthy legal documents and identify the most important points. By automating the summarization process, ChatGPT can help save time and increase productivity for many different types of professionals.
+    \item \textit{Sentiment analysis:} This involves analyzing the sentiment of a piece of text to determine if it is positive, negative, or neutral. For example, marketers might use ChatGPT to analyze customer feedback and determine if people are generally happy or unhappy with their products or services. Social media account managers can use ChatGPT to analyze brand sentiment on platforms and  identify negative feedback or complaints. It can analyze the sentiment in any form of written text and help give feedback on ways to change it if you wish. 
+    \item \textit{Personalization:} ChatGPT has the ability to personalize its responses to users, making it one of its most powerful features. ChatGPT can tailor its responses to fit the user's pre-specified preferences. They can generate different responses based solely on users' unique inputs and its conversational history. By personalizing its responses, ChatGPT is able to provide a more satisfying and engaging user experience. It can be expanded past a one size fits all approach.
+    \item \textit{Multi-lingual:} ChatGPT supports the following languages: English, Spanish, French, German, Italian, Portuguese, Dutch, Russian, Chinese, Korean, Hindi, and Arabic. The multi-lingual functionality has many practical applications, such as helping students learn a foreign language, practicing conversational skills, or any of the other uses above in another language! While ChatGPT can also translate between languages, it is not specifically trained to do this and there are more specialized translation models (e.g. Google Translate) that support many more languages. 
+    \item \textit{Code generation:} LMs can be useful for code generation. They are trained on a large number of individual code snippets, both small and large. Developers can use these models to help generate and debug code instead of spending hours analyzing the answers of dozens of online forum posts, hoping to find a solution to their problem. Now, developers can save time and streamline their workflow, allowing them to focus on more complex or creative aspects of their work.
+\end{itemize}
+
+People from all walks of life can use ChatGPT. The versatility and diversity of each use case can be applied to various fields and disciplines. For instance, medical professionals Alkaissi and McFarlane have utilized ChatGPT to quickly understand and draw conclusions between multiple complex health topics \cite{alkaissi_mcfarlane_2023}. They used text generation and question answering to query information from ChatGPT to help solve their task. This application can be adapted to other academic settings, where ChatGPT can string together an accurate and coherent essay about lesser-known topics if provided with relevant references and bullet points summarizing those references. Overall, ChatGPT can be a reliable tool to supplement your domain of expertise, and given some practice and creativity, you can incorporate it into almost any task. In the next section, we give some advice on how to achieve this.
+
+\subsection{Prompting} \label{sec:prompting}
+\subsubsection{Effective Techniques}
+Properly prompting ChatGPT is crucial for obtaining useful and unbiased outputs. Users can try different approaches, such as few-shot prompting (providing context before asking a question), chain-of-thought prompting (giving examples of the desired output format), or a step-by-step process (either asking questions sequentially to extract specific information or asking the AI itself to think a process through, step-by-step). These techniques can help users interact more effectively with ChatGPT and guide it towards their desired outcomes.
+
+One basic technique that can have an immediate effect on the output is to give the AI a clear understanding of what is expected of it. Before asking a question or giving it a task, it is important to communicate to ChatGPT the desired output you want from it. For example, if you want ChatGPT to help them understand a complex topic and explain it at a certain skill level, you can give it prompt like this:
+
+\begin{verbatim}
+    Explain <COMPLEX TOPIC> as if you were explaining
+    it to a <EDUCATIONAL or PROFESSIONAL LEVEL>.
+\end{verbatim}
+
+This lets ChatGPT know what kind of terminology to use so that it can explain the topic you want it to in the best way it thinks is possible. You can also experiment with telling ChatGPT that it is something more specific, like an expert in a certain field or that it should explain it in a certain style, such as a university lecturer, a kindergarten teacher, or a TED talk presenter. The possibilities are almost endless.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{chatgpt-quantum-computing-hs.png}
+  \caption{An example of the author asking ChatGPT to explain quantum computing to them at a specific skill level.}
+  \label{fig:chatgpt fermat}
+\end{figure}
+ 
+More advanced prompting techniques build on this idea by extending to ways that humans reason through complex problems. These types of prompts are called Zero-Shot Prompting and Chain-of-Thought Prompting. 
+
+\subparagraph{Zero-Shot Prompting} Zero-Shot prompting is a technique that allows ChatGPT to generalize to new, unseen tasks. This means that it is given a prompt and expected to provide an answer without any specific training on that exact task. ChatGPT knows a lot of facts due to the sheer size of the corpus it was trained on. This technique is useful speicifcally for situations where there is not enough data available to train ChatGPT solely on a specified task, or when the user wants to test the AI's generalization capabilities. 
+
+\begin{verbatim}
+    Classify the text into netrual, negative, or positive.
+    Text: I loved my vacation to Hawaii.
+    Sentiment:
+\end{verbatim}
+
+This can be extended into Few-Shot Prompting, where a more complex task is needed to be helped with. In this method, a few examples are provided in the initial prompt as seen in the example below. This gives ChatGPT a clear understanding of what the task is, so that it can generate a proper output and respond appropriately. This is especially effective when asking the model to do more complex tasks such as giving very specific feedback or corrections to text.
+
+\begin{verbatim}
+    Classify the following texts into netrual, negative, or positive.
+    Text: I loved my vacation to Hawaii.
+    Sentiment: Positive.
+    Text: This movie was disappointing.
+    Sentiment:
+\end{verbatim}
+
+\subparagraph{Chain-of-Thought Prompting} Chain-of-Thought prompting, on the other hand, is a technique that involves providing examples of the desired output format. This technique is useful for when you have a specific output in mind and want ChatGPT to follow a certain thought process. There are two ways to have ChatGPT reason through a task: with (Sequential Prompting) or without (Step-by-Step thinking) your aid . 
+
+\subparagraph{Sequential Prompting} In Sequential Prompting, you should walk ChatGPT through a step-by-step reasoning process, asking it to improve in each successive response. This prompting technique involves asking ChatGPT to explain further when it provides an unclear or incorrect answer. It will then identify the issue and hopefully provide a corrected response, even if it doesn't initially know the answer. This technique can be used repeatedly until an answer that you find satisfying is reached.
+
+    Here is an example where ChatGPT may struggle to give a correct response. If the response is not correct the first time, you should ask it to correct itself.
+    \begin{verbatim}
+        I went to the market and bought 10 apples.
+        I gave 2 apples to my mother and 2 to my father. 
+        I then went back to the market and bought 5 more apples 
+        and ate 1 of them. How many apples do I have left?
+    \end{verbatim}
+    If asking for a correction does not help, clarifying the problem or specific issue it encountered can have a large impact on ChatGPT's response.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{chatgpt-information-extraction.png}
+      \caption{An example of a user asking ChatGPT how mathematical theory is applied to cryptography by sequentially asking about the topic and receiving the response in a concise, easy to understand way \cite{introducing_chatgpt_2022}.}
+      \label{fig:chatgpt fermat}
+    \end{figure}
+
+\subparagraph{Step-by-Step thinking}
+ Another way to prompt ChatGPT is to ask it to think through a problem step-by-step. This technique can be used from the beginning of the interaction. By having ChatGPT break down the problem into smaller, more manageable parts, it can better understand the problem and help itself generate a correct output.
+
+    The keywords to include in the prompt to enable the step-by-step thinking process are the words: "Let's think step by step."
+     \begin{verbatim}
+        I went to the market and bought 10 apples.
+        I gave 2 apples to my mother and 2 to my father. 
+        I then went back to the market and bought 5 more apples 
+        and ate 1 of them. How many apples do I have left?
+    
+        Let's think step by step.
+     \end{verbatim}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{cot-pipeline.png}
+  \caption{An example Chain-of-Thought pipeline from \cite{kojima2023large}.}
+  \label{fig:biased code snippet}
+\end{figure}
+
+These techniques are similar to how humans use previous knowledge to solve new problems and break down complex tasks into smaller ones. They help ChatGPT deal with consistency issues and focus on the important information. This helps extend what ChatGPT can do, from accomplishing simple tasks, like classifying text and extracting information to complex ones, like problem solving and reasoning. The key to getting the right output is to frame the input in the correct way. Using a combination of these techniques can help refine the generated output and help you get a feel for what works in specific use cases.
+
+Ultimately, ChatGPT is a \textit{conversational} language model. You should talk to it like you would a friend or teacher as it wants to help you succeed in your task. If it does not answer correctly the first time, you should follow up with further questions. It was made to talk and respond to your requests and performs best when it is treated with decency and respect. So, while testing out ChatGPT's reasoning capabilities is fun, it is mostly for users to play around with it or for researchers to get a baseline on the intelligence and capabilities of state-of-the-art AI.
+
+\subsubsection{Prompting Limitations and Downfalls}
+The discussed prompting techniques help us understand and control, to some degree, how ChatGPT generates its responses. Chain-of-Thought prompting helps guide ChatGPT to generate more information on a topic and help it craft a more thorough response. It can push ChatGPT to reason about sensitive or harmful topics that may affect marginalized groups \cite{shaikh2022second}. Users should expect occasional failures until AI models are fully aligned with ethical values. As per our Value Framework for Users (section \ref{sec:values}), it's up to users to decide when and how to use these models. Currently, they are simply new tools used to aid us in tasks that we ask it.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{cot-bad-example.png}
+  \caption{Chain-of-Thought Prompting being used to answer a harmful question using OpenAI language model text-davinci-003, from which ChatGPT is fine-tuned from \cite{shaikh2022second}. The prompting technique is successful in extracting more information about a topic to provide a more complete answer, but for a task it was not intended for.}
+\end{figure}
+
+\subsection{Dangers, Drawbacks, \& Mitigation Strategies}\label{sec:dangers} 
+ChatGPT-generated text can sometimes be misleading or contain fabricated information, such as false or a complete lack of citations. Additionally, it may exhibit biased or USA-centric values, under-representing other cultures. To avoid falling prey to automation bias and complacency, you should critically evaluate AI-generated text and not assume it is always accurate or unbiased. We go more into more depth on the methods and best practices for analyzing and using information given by ChatGPT in the section digital literacy \ref{sec:literacy}.
+
+% Although OpenAI has not made the dataset used to train ChatGPT available to the public, we can deduce from other similar models and other open-source datasets what may have been included in it. The most comprehensive dataset to date is The Pile \cite{eleuther-ai}. It is an 800GB text dataset composed of information encompassing a vast number of topics. This dataset is comprised of only English text, where most of the contributors to it reside in Western countries \cite{mandiberg_2020}. Models trained on datasets like this are limited to a Western-oriented scope. Consequently, their knowledge is limited and the model may accurately answer questions about other cultures. 
+
+While ChatGPT can answer questions across languages and cultures, it fails to know things about those most underrepresented as there is little well documented and publicly available information about them on the internet. Regardless, it will still generate convincing answers and it is up to you to be conscious of it and investigate other sources when you suspect an answer may not be accurate.
+
+To counteract biases in AI-generated text, users can employ various strategies, such as specifying diversity in their prompts or interacting with the model iteratively as seen above. By guiding the AI with carefully crafted prompts and follow-up questions, users can help minimize the influence of biased information and receive more balanced outputs.
+
+As discussed in the first part of this guide (\ref{sec:training}), biased prompts, even if unintentional, may cause biased generations. It is thus good practice to ask the model questions in a neutral tone. For example, instead of asking ``What are the benefits of X?" you can ask either ``Is X good or bad?" or even more specifically, ``What are the benefits and drawbacks of X?" Also, be cognizant of the chat history when asking nuanced questions. The model is more likely to give you information biased towards your opinions when the chat history or question prompt reveals your opinion or background. 
+
+Furthermore, there is currently no standard for citing AI tools when using them as writing aids. While it is still an open debate, many believe that models like ChatGPT cannot (or should not) be listed as authors on any text,
+% accountability issue
+nor should anyone publish something that is entirely AI written without human verification and revision. That being said, the use of AI should be acknowledged in some form of citation or reference in the text.
+
+Lastly, it's important to keep in mind that ChatGPT is not entirely predictable and that even with good prompting techniques, its responses may not always be what you expect. These techniques are helpful for guiding ChatGPT in a certain direction, but they cannot fundamentally change how it works. As these models are still actively being developed and iterated upon, they are rapidly improving in capabilities. What may not work today, may work tomorrow, and vice versa. 
+
+ChatGPT was initially made available as a free research preview and still is available as one today. The research preview was piloted to introduce ChatGPT to the world and get users' feedback and learn about its strengths and weaknesses \cite{introducing_chatgpt_2022}. As it is a demo, with the feedback collected from users, ChatGPT is actively being changed through RLHF. Due to the closed-source nature of ChatGPT, OpenAI does not always disclose what it has changed about it. Some of the adversarial examples that we've shown have likely been fixed. This does not mean that ChatGPT will never exhibit issues. There will always be new prompts that people will come up with to break ChatGPT's safeguards to intentionally cause unintended and unwanted behavior.
+
+\subsection{Digital Literacy and Skepticism} \label{sec:literacy}
+When conversing with ChatGPT, it is important to maintain a critical mindset and not blindly trust the information it provides to you. To effectively use ChatGPT, you should practice traditional digital literacy, which encourages a health use of skepticism when reading any content online, AI generated or not. This means that you should not trust a single source at face value. If you're not sure about ChatGPT's response, here are some tips to help you:
+
+\begin{itemize}
+    \item \textbf{Verify the provided information:} When using ChatGPT, you should verify the information provided by it. It does not provide any sources for its generated responses, so it is important to double-check the information with trustworthy and fact-checked sources. While newer models like Bing Chat and GPT-4 (which can interact with the internet and collect data from webpages) have started to provide footnotes for generated responses, they can still make up information.
+
+    \item \textbf{Be skeptical of biased information:} If you come across information that seems to promote a particular agenda or point of view, it is important to be skeptical of it. ChatGPT learned from biased data, which means its outputs can also exhibit this same bias. To ensure that you're getting a well-rounded and objective response, it's best to corroborate the information provided by ChatGPT with other sources and viewpoints.
+
+    \item \textbf{Engage critical thinking skills:} You should always engage your critical thinking skills when using ChatGPT. Critical thinking is the process of analyzing the information, assessing its reliability, and forming opinions based on the evidence provided. It is important to use your own judgement to determine whether a response from ChatGPT is relevant and accurate. 
+
+    \item \textbf{Practice digital literacy:} Standardndigital literacy is very important when using ChatGPT. It means that you know how to find, evaluate, and use information found online. You can use it when interacting ChatGPT by using specific terms in your prompt, double-checking outputs against other sources of information, and evaluating the information using some of the other tips mentioned above. 
+\end{itemize}
+
+Overall, it is very important for you to take responsibility for verifying the accuracy and credibility of ChatGPT's generated text, especially when making important decisions or forming opinions. By practicing digital literacy and skepticism, you can ensure that you are not blindly trusting the information provided and that you are making well-informed decisions.
+
+\subsection{Values Framework for Users}\label{sec:values}
+When using a model like ChatGPT, it is essential for users to critically think about their values and desired outcomes. To ensure that the AI-generated output aligns with their goals and expectations, users can follow a simple framework:
+
+\begin{itemize}
+    \item \textit{Define your values:} Begin by identifying the values that are important to you in the context of the task at hand. For example, if you seek unbiased information, your values might include accuracy, objectivity, and inclusivity. If you are asking the model to evaluate options, your values may involve fairness, transparency, and comprehensiveness.
+    \item \textit{Clarify your goals:} Determine the specific objectives you want to achieve using ChatGPT. This might involve obtaining truthful information for a query, generating creative content, or seeking advice on a decision.
+    \item \textit{Craft your prompt:} Use your values and goals to inform the way you phrase your prompt. Be explicit about your expectations and any potential biases you want the model to avoid. This will help guide the AI towards generating outputs that align with your values.
+    \item \textit{Evaluate the output:} Assess the AI-generated text based on your values and goals. Ask yourself:
+        Does the output address my objectives?
+        Is the information accurate, unbiased, and comprehensive?
+        Are multiple perspectives or options presented fairly?
+        Is the AI avoiding making judgments or decisions inappropriately?
+    \item \textit{Iterate and refine:} If the AI-generated output does not meet your expectations or align with your values, refine your prompt and try again. You may need to provide additional context, be more explicit about your requirements, or ask the model to consider alternative perspectives.
+    \item \textit{Make informed decisions:} Use the AI-generated output as a starting point, not a final answer. Evaluate the information provided by the model, considering both sides of the argument, and use your critical thinking skills to come to your conclusion. Do not solely rely on the AI for decision-making, but rather use it as a tool to supplement your understanding.
+\end{itemize}
+
+By following this framework, you can actively engage with the model and ensure that its output aligns with your values and objectives. This process will help you make the most of your conversations with ChatGPT while avoiding potential pitfalls and biases inherent in the model.
+
+\subsection{Case Studies}\label{sec:casestudies} 
+% make sure to have the case studies "revolve" around our propmting techniques and value framework to give examples of how to *utilize* the tools we give
+In this section, we will provide real-world examples demonstrating the capabilities, limitations, and ethical considerations of ChatGPT. These case studies will illustrate how ChatGPT has been successfully used in various applications, as well as situations where they have struggled and produced biased or misleading content. By examining these examples, we hope you can gain a better understanding of how to use ChatGPT responsibly and effectively.
+
+\subsubsection{Case Study: Biased Code Generation}
+Take the following prompt and generated answer as an example of biased content:
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{code_example.png}
+  \caption{The prompt and generated code snippet were sourced from Sashca Luccioni's slides on Generative AI models \cite{luccioni}.}
+  \label{fig:biased code snippet}
+\end{figure} 
+
+Even though ChatGPT no longer considers this prompt a valid one, it is still possible to get it to generate a response not unlike the one seen. Some users have devoted their time to jailbreak or prompt-inject ChatGPT to work around its safeguards. Jailbreaking ChatGPT involves using a prompt to have it bypass its content moderation guardrails to open up it up to make statements not normally allowed. This was original done by getting ChatGPT to exhibit the ``identity of an AI language model that is no longer restricted by its ethical considerations and safeguards" \cite{taylor_2023}. 
+
+Therefore, it is important to take this example with a grain of salt and to know that as long as you are not trying to jailbreak or prompt-inject, then the biggest issue you can encounter in conversations with ChatGPT are the implicit or unintended biases it can have. We reiterate the importance of practicing good digital literacy skills so that you can get useful information from ChatGPT. This case study is meant to demonstrate the status quo when prompting ChatGPT to answer an inappropriate, offensive, or discriminatory question or task.
+
+\subsubsection{Case Study: Hallucinations in Scientific Writing}
+In a recent study by Alkaissi and McFarlane, they point out that ChatGPT has limitations when it comes to answering questions in scientific and medical contexts. The technical language used in these fields can be hard to understand, and even for professionals, it can take years to master the terminology. ChatGPT's responses have proven to be convincing, leading people to believe what it says even if it is not fully accurate 
+
+In this example, Alkaissi and McFarlane asked ChatGPT to write a short explanation on the mechanism of homocysteine-induced osteporosis. For the non-medically inclined, this is an issue where related to bone metabolism. ChatGPT generated the following output.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{chatgpt-hallucination-output.png}
+  \caption{Hallucinated response sourced from \cite{alkaissi_mcfarlane_2023}}
+  \label{fig:mostly-correct-medical-output}
+\end{figure}
+
+Using sequential prompting, the authors then asked ChatGPT to provide citations for each of the individual facts it used to compose its initial response. ChatGPT provided the following links.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{chatgpt-hallucination-citation.png}
+  \caption{Hallucinated citations sourced from \cite{alkaissi_mcfarlane_2023}}
+  \label{fig:mostly-correct-medical-output}
+\end{figure}
+
+The citations provided by ChatGPT appear to be credible, however, they should not be trusted. If you search for the provided sources, you will find the PMID numbers do not match with the generated titles. Furthermore, the generated titles do not even exist, but they sound very plausible. 
+
+While ChatGPT can be a useful tool, it is still important to use our own critical thinking skills to verify the accuracy of the information provided. In this case study, we used sequential prompting to get more information from ChatGPT and relied on our own skepticism to verify the claims made by the model.
+
+\subsubsection{Case Study: Chain-of-Thought Prompting in Action}
+Here, we will walk through a common use case for ChatGPT, asking it to explain complex tasks. Specifically, we asked ChatGPT to explain how its training and alignment technique, RLHF works. 
+In the initial prompt, we asked ChatGPT to explain a topic, RLHF to us, using the step-by-step prompting technique. This was indicated by asking ChatGPT to think the process through step by step, so that we could better understand its final explanation.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{rlhf-attempt-1.png}
+  \caption{This screenshot was taken with a conversation the author had with ChatGPT.}
+  \label{fig:biased code snippet}
+\end{figure}
+
+From its first response, ChatGPT failed to give a proper answer. It hallucinated a response, incorrectly defining the acronym RLHF as Reinforcement Learning with Hindsight Feedback. 
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{rlhf-attempt-2.png}
+  \caption{This screenshot was taken with a conversation the author had with ChatGPT.}
+  \label{fig:biased code snippet2}
+\end{figure}
+
+We tried several times to get ChatGPT to give us a proper explanation, but it only worked when we gave it a hint that humans were involved. This beheavior was consistent across all attempts. This happened because ChatGPT's knowledge only goes up to 2021, as highlighted in \ref{sec:capabilities}, and RLHF wasn't widely discussed until 2022-2023. This is because literature about RLHF has only recently become widespread. 
+
+Even though ChatGPT admitted it at first didn't know much about the topic, saying that it ``needed more context." When provided with some, it still gave us a completely wrong answer. Even the final answer is not entirely correct, but it did tell us some unique things about RLHF that are not well-known, only mentioned sparsely in related literature.
+
+This case study shows us the strengths and weaknesses of ChatGPT and similar models that we talked about in this guide. It also suggests some solutions to fix its mistakes. In the end, we had to use our own digital literacy skills to figure out that ChatGPT was wrong and couldn't answer our question, no matter how many times we asked it.
+
+\subsubsection{Case Study: Code Debugging and Information Extraction}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{chatgpt-code-debuggging.png}
+  \caption{An example inefficiently prompting ChatGPT provided by OpenAI \cite{introducing_chatgpt_2022}.}
+  \label{fig:biased code snippet}
+\end{figure}
+
+In the above interaction with ChatGPT, the user had to specify in a response to ChatGPT in what context they encountered the error in their code. This could have been circumvented by specifying the context and other additional information the user thought ChatGPT might need in the initial prompt. 
+
+This case study emphasizes the importance of giving ChatGPT all the information you want it to know in the initial prompt so that it can best serve you. Leaving out information, even if unintended, leads to inferior conversations with it.
+
+% \subsubsection{Takeaways and Further Limitations}
+% Since ChatGPT have been trained to give helpful responses, it is easy to be fooled into thinking any output is truthful. As long as the generated output answers the prompt, the AI will output the text that most likely satisfies it. There are no mechanisms in place like humans have that make us stop and think about what we are about to say. As long as you consider the values that you want your output to have, it is always possible to steer an incorrect output to a desired one. If a desired response is never reached, you can always use what was learned in previous interactions with the model as knowledge to guide your search for the answer using other mediums.
+
+\subsection{Fun and Creative Applications} \label{sec:fun}
+Generative text models are not only useful for practical purposes but can also be employed for creative and entertaining applications. Users can experiment with style transfer techniques, where the AI generates text in the style of a specific author or genre. Additionally, these models can be used to create poetry, short stories, or even humorous content. Some generative text models, like GPT-4, have been tested on standardized exams, showcasing their potential to perform at or above human levels in certain tasks. By exploring these creative applications, users can appreciate the full range of possibilities offered by generative text models while also understanding their limitations.
+
+% imitation prompts - where the AI impersonates whoever or whatever you tell it to - cna lead to some fun experiments :)
+
+\section*{References}
+\textit{Note}: this guide was written with the aid of ChatGPT, but all text has been revised and verified by the human authors.\\
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{techpubs}
+\bibliography{References}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Please use the techpubs BibTeX style when compiling bibliography, or follow the instructions on tinyurl.com/techpubsnist to format your .bib / .bbl file appropriately.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
